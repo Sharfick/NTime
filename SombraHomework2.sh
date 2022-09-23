@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 LOCALE_PATH=/etc/locale.gen
 LOCALE02=/etc/env.d/02locale
@@ -27,7 +27,7 @@ world_update(){
 	emerge --ask --verbose --update --deep --newuse @world
 
 	echo "установка timezone для Екатеринбурга"
-	echo "USE='-gtk -gnome qt5 kde dvd alsa cdr'" >> $MAKE_PATH
+	echo "USE='minimal -pasystemd  X gtk gnome -qt5 -kde dvd alsa cdr'" >> $MAKE_PATH
 	echo "ACCEPT_LICENSE='*'" >> $MAKE_PATH
 	echo "Asia/Yekaterinburg" > /etc/timezone
 

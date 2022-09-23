@@ -9,6 +9,7 @@ core_install(){
 	echo "подготовка к настройки ядра"
 	emerge --ask sys-kernel/gentoo-sources
 	emerge --ask sys-kernel/genkernel
+	eselect kernel set 1
 
 	sed -i "s/LABEL=boot	\/boot	ext4	noauto,noatime	1 2/LABEL=boot	\/boot	ext4	defaults	0 2/g" /etc/fstab
 	
@@ -69,6 +70,16 @@ installer(){
 
 
 	poweroff
+
+}
+
+network(){
+	hostnamectl hostname Sombra
+	emerge --ask net/dhcpcd
+	rc-update add dhcpcd default
+	rc-service dhcpcd start
+	systemctl enable --now dhcpcd
+
 
 }
 

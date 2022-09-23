@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MAKE_PATH=/etc/make.conf
+MAKE_PATH=/etc/portage/make.conf
 
 
 driver_install(){
@@ -9,7 +9,7 @@ driver_install(){
 	echo "имя нового пользователя:"
 	read NAME
 
-	useradd -m -G wheel,audio,video $NAME
+	useradd -m -G wheel, audio, video $NAME
 	echo "пароль для $NAME"
 
 	passwd $NAME
@@ -25,7 +25,7 @@ driver_install(){
 graphic_install(){
 
 	echo "установка графического интерфейса GNOME"
-	eselect profile set default/linux/amd64/17.1/desktop/gnome/systemd
+	#eselect profile set default/linux/amd64/17.1/desktop/gnome/systemd
 
 	emerge --ask gnome-base/gnome
 
@@ -38,7 +38,7 @@ graphic_install(){
 
 error_exit(){
 
-	#echo "обработка ошибок"
+	echo "обработка ошибок"
 	echo"Error: $1"
 	exit 1
 

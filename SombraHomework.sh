@@ -57,7 +57,10 @@ make_fsys() {
 
 	mkfs.vfat -F 32 /dev/sda1
 	mkfs.ext4 /dev/sda2
+	mkdir /mnt/gentoo/boot
 	mount /dev/sda2 /mnt/gentoo
+	mount /dev/sda1 /mnt/gentoo/boot
+
 }
 
 stage3_install() {
@@ -68,8 +71,8 @@ stage3_install() {
       	wget $STAGE3_URL/$STAGE3_FILE
 	tar xpvf ${STAGE3_FILE:17}
 	cd
-	mkdir /mnt/gentoo/boot
-	mount /dev/sda1 /mnt/gentoo/boot
+	#mkdir /mnt/gentoo/boot
+	#mount /dev/sda1 /mnt/gentoo/boot
 }
 
 compiling_setting() {
