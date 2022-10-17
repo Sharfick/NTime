@@ -4,11 +4,16 @@ MAKE_PATH=/etc/portage/make.conf
 FSTAB=/etc/fstab
 KEYMAPS=/etc/conf.d/keymaps
 
+	#echo "EMERGE_DEFAULT_OPTS='\${EMERGE_DEFAULT_OPTS} --getbinpkgonly'" >> $MAKE_PATH
+	#echo "FEATURES='getbinpkg'" >> $MAKE_PATH
+	#echo "PORTAGE_BINHOST='https://mirror.yandex.ru/calculate/grp/x86_64/ https://mirror.yandex.ru/sabayon/community/community-binhost/'" >> $MAKE_PATH
+
 core_install(){
 
 	echo "подготовка к настройки ядра"
 	emerge --ask sys-kernel/gentoo-sources
 	emerge --ask sys-kernel/genkernel
+	#emerge --getbinpkg genkernel 
 	eselect kernel set 1
 
 	sed -i "s/LABEL=boot	\/boot	ext4	noauto,noatime	1 2/LABEL=boot	\/boot	ext4	defaults	0 2/g" /etc/fstab
@@ -39,9 +44,8 @@ error_exit(){
 installer(){
 
 	echo "настройка загузчика"
-	echo "/dev/sda1		/boot		ntfs	defaults, noatime 0 2" >>$FSTAB
+	echo "/dev/sda1		/boot		ext4	defaults	  0 2" >>$FSTAB
 	echo "/dev/sda2		/		ext4	noatime 	  0 0" >>$FSTAB
-	echo "/dev/cdrom	/mnt/cdrom	auto	noauto,user	  0 0" >>$FSTAB
 
 
 	echo  'GRUB_PLATFORMS="pc"' >> $MAKE_PATH

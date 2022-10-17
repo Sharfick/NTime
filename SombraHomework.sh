@@ -5,7 +5,10 @@ set -x
 
 MAKE_PATH=/mnt/gentoo/etc/portage/make.conf
 
-STAGE3_FILE=$(curl -s http://mirror.yandex.ru/gentoo-distfiles/releases/amd64/autobuilds/latest-stage3-amd64-desktop-systemd.txt | grep -v '#' | awk '{print $1}')
+#STAGE3_FILE=$(curl -s http://mirror.yandex.ru/gentoo-distfiles/releases/amd64/autobuilds/latest-stage3-amd64-desktop-systemd.txt | grep -v '#' | awk '{print $1}')
+
+STAGE3_FILE=$(curl -s http://mirror.yandex.ru/gentoo-distfiles/releases/amd64/autobuilds/latest-stage3-amd64-desktop-openrc.txt | grep -v '#' | awk '{print $1}')
+
 
 STAGE3_URL=http://mirror.yandex.ru/gentoo-distfiles/releases/amd64/autobuilds
 
@@ -55,7 +58,7 @@ partition() {
 make_fsys() {
 	echo "создание файловой системы"
 
-	mkfs.vfat -F 32 /dev/sda1
+	mkfs.ext4 /dev/sda1
 	mkfs.ext4 /dev/sda2
 	mkdir /mnt/gentoo/boot
 	mount /dev/sda2 /mnt/gentoo

@@ -8,7 +8,7 @@ setting_portage(){
 	
 	echo "установка снимка репозитория ebuild-файлов Gentoo"
 
-	emerge-websync
+	emerge-webrsync
 	emerge --sync
 	emerge --sync --quiet
 
@@ -17,7 +17,7 @@ setting_portage(){
 profile_select(){
 
 	echo "выбор профиля"
-	eselect profile set 7
+	eselect profile set 6
 
 }
 
@@ -27,7 +27,7 @@ world_update(){
 	emerge --ask --verbose --update --deep --newuse @world
 
 	echo "установка timezone для Екатеринбурга"
-	echo "USE='minimal -pasystemd  X gtk gnome -qt5 -kde dvd alsa cdr'" >> $MAKE_PATH
+	echo "USE=' systemd minimal -pasystemd  X gtk gnome -qt5 -kde dvd alsa cdr'" >> $MAKE_PATH
 	echo "ACCEPT_LICENSE='*'" >> $MAKE_PATH
 	echo "Asia/Yekaterinburg" > /etc/timezone
 
