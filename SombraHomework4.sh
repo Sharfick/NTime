@@ -9,7 +9,7 @@ driver_install(){
 	echo "имя нового пользователя:"
 	read NAME
 
-	useradd -m -G wheel, audio, video $NAME
+	useradd -m -G wheel,audio,video $NAME
 	echo "пароль для $NAME"
 
 	passwd $NAME
@@ -24,15 +24,17 @@ driver_install(){
 
 graphic_install(){
 
+	emerge --ask sudo
+
 	echo "установка графического интерфейса GNOME"
 	#eselect profile set default/linux/amd64/17.1/desktop/gnome/systemd
 
-	emerge --ask gnome-base/gnome
+	emerge --ask --getbinpkg gnome-base/gnome
 
 	env-update && sourse /etc/profile
 	getent group plugdev
-
-	gpasswd -a $NAME plugdev
+	#useradd -m -G users,wheel,audio -s /bin/bash $NAME
+	#passwd $NAME 
 
 }
 

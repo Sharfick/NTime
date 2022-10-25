@@ -5,8 +5,10 @@ FSTAB=/etc/fstab
 KEYMAPS=/etc/conf.d/keymaps
 
 	#echo "EMERGE_DEFAULT_OPTS='\${EMERGE_DEFAULT_OPTS} --getbinpkgonly'" >> $MAKE_PATH
-	#echo "FEATURES='getbinpkg'" >> $MAKE_PATH
-	#echo "PORTAGE_BINHOST='https://mirror.yandex.ru/calculate/grp/x86_64/ https://mirror.yandex.ru/sabayon/community/community-binhost/'" >> $MAKE_PATH
+	echo "EMERGE_DEFAULT_OPTS=' --getbinpkgonly'" >> $MAKE_PATH
+
+	echo "FEATURES='getbinpkg'" >> $MAKE_PATH
+	echo "PORTAGE_BINHOST='https://mirror.yandex.ru/calculate/grp/x86_64/ https://mirror.yandex.ru/sabayon/community/community-binhost/'" >> $MAKE_PATH
 
 core_install(){
 
