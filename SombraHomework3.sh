@@ -46,8 +46,8 @@ error_exit(){
 installer(){
 
 	echo "настройка загузчика"
-	echo "/dev/sda1		/boot		ext4	defaults	  0 2" >>$FSTAB
-	echo "/dev/sda2		/		ext4	noatime 	  0 0" >>$FSTAB
+	echo "/dev/sda1		/boot		#efi?	defaults	  0 2" >>$FSTAB
+	echo "/dev/sda2		/		#efi?	noatime 	  0 0" >>$FSTAB
 
 
 	echo  'GRUB_PLATFORMS="pc"' >> $MAKE_PATH
