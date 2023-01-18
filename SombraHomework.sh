@@ -113,8 +113,8 @@ error_exit(){
 
 
 password || error_exit "password error"
-echo "укажите диск для разметки"
-read DISK
+#echo "укажите диск для разметки"
+DISK=$(whiptail --title "Enter disk name window" --inputbox "enter disk name for partition" 10 60 sda 3>&1 1>&2 2>&3)
 partition $DISK || error_exit "partition error"
 make_fsys || error_exit "make_fsys  error"
 stage3_install || error_exit "stage3_install error"
