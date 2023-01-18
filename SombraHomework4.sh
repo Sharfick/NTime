@@ -7,7 +7,7 @@ driver_install(){
 
 	echo "установка обновление драйверов"
 	echo "имя нового пользователя:"
-	read NAME
+	NAME=$(whiptail --title "New name window" --inputbox "Enter your new name" 10 60 NewUser 3>&1 1>&2 2>&3)
 
 	useradd -m -G wheel,audio,video $NAME
 	echo "пароль для $NAME"
