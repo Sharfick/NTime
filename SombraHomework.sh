@@ -26,9 +26,8 @@ partition() {
 	DISK=$1
 	P_CHECK=$(lsblk -o NAME,FSTYPE -dSn | grep -o $DISK)
 	if [ "$P_CHECK" == "$DISK" ] ; then
-		echo "Такой диск есть. Разметить его? (yes/no)"
-		read ANSWER
-		if [ "$ANSWER" == "yes" ] ; then
+		ANSWER=$(whiptail --title "Answer window" --yesno "Disk with name $DISK exist. Do you want create new partition?" 10 60)
+		if [ "$?" == "0" ] ; then
 			echo "разметка диска"
 			sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' <<- EOF | fdisk /dev/$DISK
 			o # clear the in memory partition table
