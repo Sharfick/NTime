@@ -15,10 +15,10 @@ STAGE3_URL=http://mirror.yandex.ru/gentoo-distfiles/releases/amd64/autobuilds
 echo "установка времени"
 ntpd -q -g
 
-password() {
-	echo "придумайте пароль для root"
-	passwd
-}
+#password() {
+#	echo "придумайте пароль для root"
+#	passwd
+#}
 
 
 partition() {
@@ -111,7 +111,7 @@ error_exit(){
 }
 
 
-password || error_exit "password error"
+#password || error_exit "password error"
 #echo "укажите диск для разметки"
 DISK=$(whiptail --title "Enter disk name window" --inputbox "enter disk name for partition" 10 60 sda 3>&1 1>&2 2>&3)
 partition $DISK || error_exit "partition error"
