@@ -55,7 +55,8 @@ partition() {
 }
 
 make_fsys() {
-	echo "создание файловой системы"
+	#echo "создание файловой системы"
+	whiptail --title  "Info Message Box" --msgbox  "Create file sys. Choose Ok to continue." 10 60
 
 	mkfs.ext4 /dev/sda1
 	mkfs.ext4 /dev/sda2
@@ -67,7 +68,8 @@ make_fsys() {
 
 stage3_install() {
 	cd
-	echo "скачивание и распаковка stage3 архива"
+	#echo "скачивание и распаковка stage3 архива"
+	whiptail --title  "Info Message Box" --msgbox  "setup and unzip stage3. Choose Ok to continue." 10 60
 	cd /mnt/gentoo
         
       	wget $STAGE3_URL/$STAGE3_FILE
@@ -78,7 +80,9 @@ stage3_install() {
 }
 
 compiling_setting() {
-	echo "изменения настроек make.conf"	
+	#echo "изменения настроек make.conf"
+	whiptail --title  "Info Message Box" --msgbox  "made changes in make.conf. Choose Ok to continue." 10 60
+
 	sed -i "s/COMMON_FLAGS='-O2 -pipe'/COMMON_FLAGS='-march=native -O2 -pipe'/g" $MAKE_PATH
 
 	echo "MAKEOPTS='-j2'" >> $MAKE_PATH
@@ -86,7 +90,9 @@ compiling_setting() {
 
 make_chroot() {
 
-	echo "монтирование файловых систем и переход в изолированное окружение"
+	#echo "монтирование файловых систем и переход в изолированное окружение"
+	whiptail --title  "Info Message Box" --msgbox  "Mount file sys and start chroot. Choose Ok to continue." 10 60
+
 	cp --dereference /etc/resolv.conf /mnt/gentoo/etc
 
 	mount --types proc /proc /mnt/gentoo/proc
@@ -105,7 +111,8 @@ make_chroot() {
 error_exit(){
 
 	#echo "обработка ошибок"
-	echo "Error: $1"
+	#echo "Error: $1"
+	whiptail --title  "Error Message Box" --msgbox  "Error in $1 . Choose Ok to continue." 10 60
 	exit 1
 
 }
