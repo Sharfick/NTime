@@ -6,7 +6,8 @@ MAKE_PATH=/etc/portage/make.conf
 
 setting_portage(){
 	
-	echo "установка снимка репозитория ebuild-файлов Gentoo"
+	#echo "установка снимка репозитория ebuild-файлов Gentoo"
+	whiptail --title  "Info Message Box" --msgbox  "installing a snapshot of the Gentoo ebuild repository. Choose Ok to continue." 10 60
 
 	emerge-webrsync
 	emerge --sync
@@ -16,14 +17,16 @@ setting_portage(){
 
 profile_select(){
 
-	echo "выбор профиля"
+	#echo "выбор профиля"
+	whiptail --title  "Info Message Box" --msgbox  "select profile 6. Choose Ok to continue." 10 60
 	eselect profile set 6
 
 }
 
 world_update(){
 
-	echo "обновление набора @world "
+	#echo "обновление набора @world "
+	whiptail --title  "Info Message Box" --msgbox  "update World. Choose Ok to continue." 10 60
 	emerge --ask --verbose --update --deep --newuse @world
 
 	echo "установка timezone для Екатеринбурга"
@@ -37,7 +40,8 @@ world_update(){
 
 locale_update(){
 	
-	echo "смена локали на русский"
+	#echo "смена локали на русский"
+	whiptail --title  "Info Message Box" --msgbox  "change locale to russian. Choose Ok to continue." 10 60
 	echo "en_US ISO-8859-1" >> $LOCALE_PATH
 	echo "en_US.UTF-8 UTF-8" >> $LOCALE_PATH
 	echo "ru_RU.UTF-8 UTF-8" >> $LOCALE_PATH
@@ -55,7 +59,8 @@ locale_update(){
 error_exit(){
 	
 	#echo "обработка ошибок"
-	echo "Erorr: $1"
+	#echo "Erorr: $1"
+	whiptail --title  "Error Message Box" --msgbox  "Error in $1. Choose Ok to continue." 10 60
 	exit 1
 
 }
