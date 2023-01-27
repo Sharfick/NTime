@@ -12,7 +12,8 @@ KEYMAPS=/etc/conf.d/keymaps
 
 core_install(){
 
-	echo "подготовка к настройки ядра"
+	#echo "подготовка к настройки ядра"
+	whiptail --title  "Info Message Box" --msgbox  "preparing for kernel tuning. Choose Ok to continue." 10 60
 	emerge --ask sys-kernel/gentoo-sources
 	emerge --ask sys-kernel/genkernel
 	#emerge --getbinpkg genkernel 
@@ -38,14 +39,16 @@ core_install(){
 error_exit(){
 	
 	#echo "обработка ошибок"
-	echo "Error: $1"
+	#echo "Error: $1"
+	whiptail --title  "Error Message Box" --msgbox  "Error in $1 . Choose Ok to continue." 10 60
 	exit 1
 
 }
 
 installer(){
 
-	echo "настройка загузчика"
+	#echo "настройка загузчика"
+	whiptail --title  "Info Message Box" --msgbox  "bootloader setting. Choose Ok to continue." 10 60
 	echo "/dev/sda1		/boot		efi	defaults	  0 2" >>$FSTAB
 	echo "/dev/sda2		/		ext4	noatime 	  0 0" >>$FSTAB
 
