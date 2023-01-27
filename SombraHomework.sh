@@ -112,7 +112,7 @@ error_exit(){
 
 	#echo "обработка ошибок"
 	#echo "Error: $1"
-	whiptail --title  "Error Message Box" --msgbox  "Error in $1 . Choose Ok to continue." 10 60
+	whiptail --title  "Error Message Box" --msgbox  "Error in ${1}. Choose Ok to continue." 10 60
 	exit 1
 
 }
